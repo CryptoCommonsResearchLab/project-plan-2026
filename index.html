@@ -206,15 +206,21 @@
     flex: 1;
     min-height: 0;
     overflow: auto;
-  }
-
-  .mermaid-container .mermaid {
     width: 100%;
   }
 
-  .mermaid svg {
-    width: 100%;
-    height: auto;
+  .mermaid-container .mermaid,
+  .mermaid-container [data-processed="true"] {
+    width: 100% !important;
+    min-width: 100%;
+  }
+
+  .mermaid svg,
+  .mermaid-container svg {
+    width: 100% !important;
+    min-width: 100%;
+    height: auto !important;
+    max-height: 70vh;
   }
 
   .tag {
@@ -906,7 +912,7 @@ flowchart TB
       critBkgColor: '#e0a050',
     },
     flowchart: { curve: 'basis', padding: 20, useMaxWidth: true },
-    gantt: { fontSize: 14, barHeight: 28, barGap: 6, topPadding: 40, leftPadding: 120, useMaxWidth: true }
+    gantt: { fontSize: 16, barHeight: 30, barGap: 8, topPadding: 50, leftPadding: 140, sectionFontSize: 16, numberSectionStyles: 4, useMaxWidth: true }
   });
 
   let current = 0;

@@ -209,12 +209,12 @@
   }
 
   .mermaid-container .mermaid {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
   }
 
   .mermaid svg {
-    max-height: 55vh;
+    width: 100%;
+    height: auto;
   }
 
   .tag {
@@ -375,27 +375,6 @@
     margin-top: 10px;
   }
 
-  .question-item {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .question-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--accent);
-    min-width: 28px;
-  }
-
-  .question-text {
-    font-size: 17px;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
 
   /* ========== MOBILE ========== */
   @media (max-width: 768px) {
@@ -548,14 +527,6 @@
 
     .slide-counter {
       font-size: 11px;
-    }
-
-    .question-text {
-      font-size: 15px;
-    }
-
-    .question-item {
-      padding: 12px 0;
     }
 
     /* Title slide mobile */
@@ -887,37 +858,12 @@ flowchart TB
     </div>
   </div>
 
-  <!-- Slide 10: Open Questions -->
-  <div class="slide" data-slide="9">
-    <div class="slide-header">
-      <div class="slide-label">Discussion</div>
-      <h2>Open Questions</h2>
-    </div>
-    <div style="max-width:800px">
-      <div class="question-item">
-        <span class="question-num">01</span>
-        <span class="question-text">Is Giuseppe available to commit students to Wing A?</span>
-      </div>
-      <div class="question-item">
-        <span class="question-num">02</span>
-        <span class="question-text">Should we set up a forum instead of Signal for async work?</span>
-      </div>
-      <div class="question-item">
-        <span class="question-num">03</span>
-        <span class="question-text">Timeline for CCRL website with publications?</span>
-      </div>
-      <div class="question-item">
-        <span class="question-num">04</span>
-        <span class="question-text">How do we handle affiliation if papers publish at different times?</span>
-      </div>
-    </div>
-  </div>
 
 </div>
 
 <!-- Navigation -->
 <div class="nav">
-  <span class="slide-counter" id="counter">1 / 10</span>
+  <span class="slide-counter" id="counter">1 / 9</span>
   <div class="nav-dots" id="dots"></div>
   <div class="nav-controls">
     <button class="nav-btn" onclick="prev()" aria-label="Previous">&larr;</button>
@@ -959,8 +905,8 @@ flowchart TB
       critBorderColor: '#e0a050',
       critBkgColor: '#e0a050',
     },
-    flowchart: { curve: 'basis', padding: 20 },
-    gantt: { fontSize: 13 }
+    flowchart: { curve: 'basis', padding: 20, useMaxWidth: true },
+    gantt: { fontSize: 14, barHeight: 28, barGap: 6, topPadding: 40, leftPadding: 120, useMaxWidth: true }
   });
 
   let current = 0;

@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCRL Project Plan 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-surface: #12121a;
+    --bg-card: #1a1a25;
+    --bg-muted: #22222f;
+    --text: #e8e8ef;
+    --text-muted: #9a9ab0;
+    --primary: #2d5a8e;
+    --primary-light: #3a7bc8;
+    --accent: #5b8fd9;
+    --accent-glow: rgba(91,143,217,0.15);
+    --border: #2a2a3a;
+    --success: #4caf7a;
+    --warning: #e0a050;
+    --slide-pad-x: 80px;
+    --slide-pad-y: 60px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .slideshow {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--slide-pad-y) var(--slide-pad-x);
+    padding-bottom: 80px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slide.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .slide-header {
+    margin-bottom: 30px;
+    flex-shrink: 0;
+  }
+
+  .slide-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+  }
+
+  h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .card-accent {
+    border-left: 4px solid var(--accent);
+  }
+
+  .card h3 {
+    margin-bottom: 12px;
+  }
+
+  .card p, .card li {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .card ul li {
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+
+  th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  td {
+    padding: 12px 16px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  td:first-child {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .mermaid-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  .mermaid-container .mermaid {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .mermaid svg {
+    max-height: 55vh;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--accent-glow);
+    color: var(--accent);
+    border: 1px solid rgba(91,143,217,0.3);
+  }
+
+  .tags-wrap {
+    display: flex;
+    gap: 12px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .status-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 6px;
+  }
+
+  .status-active { background: rgba(76,175,122,0.15); color: var(--success); }
+  .status-pending { background: rgba(224,160,80,0.15); color: var(--warning); }
+
+  .flow-steps {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .flow-step {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .flow-arrow {
+    color: var(--text-muted);
+    font-size: 20px;
+  }
+
+  .step-blue { background: rgba(91,143,217,0.15); color: var(--accent); border: 1px solid rgba(91,143,217,0.3); }
+  .step-amber { background: rgba(224,160,80,0.15); color: var(--warning); border: 1px solid rgba(224,160,80,0.3); }
+  .step-green { background: rgba(76,175,122,0.15); color: var(--success); border: 1px solid rgba(76,175,122,0.3); }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    background: linear-gradient(transparent, var(--bg));
+    z-index: 100;
+  }
+
+  .nav-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .nav-dot.active {
+    background: var(--accent);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  .nav-controls {
+    display: flex;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-btn:hover { background: var(--bg-muted); border-color: var(--accent); }
+  .nav-btn:active { background: var(--accent-glow); }
+
+  .slide-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .logo-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    padding-top: max(20px, env(safe-area-inset-top));
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 10px;
+  }
+
+  .question-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .question-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 28px;
+  }
+
+  .question-text {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ========== MOBILE ========== */
+  @media (max-width: 768px) {
+    :root {
+      --slide-pad-x: 20px;
+      --slide-pad-y: 70px;
+    }
+
+    .slide {
+      justify-content: flex-start;
+      padding-bottom: 90px;
+    }
+
+    .logo-bar {
+      padding: 12px 20px;
+      padding-top: max(12px, env(safe-area-inset-top));
+    }
+
+    .logo {
+      font-size: 13px;
+    }
+
+    .logo img {
+      width: 24px;
+      height: 24px;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      margin-top: 12px;
+    }
+
+    .slide-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .slide-header {
+      margin-bottom: 20px;
+    }
+
+    .grid-2, .grid-3, .event-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      padding: 18px;
+    }
+
+    .card p, .card li {
+      font-size: 14px;
+    }
+
+    .card ul li {
+      padding: 4px 0;
+      padding-left: 16px;
+    }
+
+    .card ul li::before {
+      top: 12px;
+      width: 6px;
+      height: 6px;
+    }
+
+    table {
+      font-size: 13px;
+    }
+
+    th {
+      font-size: 10px;
+      padding: 8px 10px;
+    }
+
+    td {
+      padding: 8px 10px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 3px 8px;
+    }
+
+    .tags-wrap {
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .mermaid svg {
+      max-height: none;
+      width: 100%;
+    }
+
+    .mermaid-container {
+      align-items: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .flow-steps {
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .flow-step {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+
+    .flow-arrow {
+      font-size: 14px;
+    }
+
+    .nav {
+      padding: 12px 16px;
+      padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+
+    .nav-dots {
+      gap: 6px;
+    }
+
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+    }
+
+    .nav-dot.active {
+      width: 18px;
+    }
+
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+    }
+
+    .slide-counter {
+      font-size: 11px;
+    }
+
+    .question-text {
+      font-size: 15px;
+    }
+
+    .question-item {
+      padding: 12px 0;
+    }
+
+    /* Title slide mobile */
+    .title-center {
+      padding-top: 20px;
+    }
+
+    .title-center h1 {
+      font-size: 36px;
+    }
+  }
+
+  /* Tiny phones */
+  @media (max-width: 380px) {
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .title-center h1 { font-size: 28px; }
+    .subtitle { font-size: 14px; }
+    .flow-step { padding: 6px 8px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <div class="logo">
+    <img src="https://www.crypto-commons.org/images/cca-logo.png" alt="CCA" onerror="this.style.display='none'">
+    <span>CRYPTO COMMONS</span>
+  </div>
+</div>
+
+<div class="slideshow" id="slideshow">
+
+  <!-- Slide 1: Title -->
+  <div class="slide active" data-slide="0">
+    <div class="title-center" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;flex:1">
+      <div class="slide-label">Crypto Commons Research Lab</div>
+      <h1 style="margin-bottom:20px">Project Plan 2026</h1>
+      <p class="subtitle" style="max-width:600px">Three coordinated wings driving permissionless protocol design, formal research, and academic legitimacy.</p>
+      <div class="tags-wrap">
+        <span class="tag">Wing A: Protocol Design</span>
+        <span class="tag">Wing B: Trust Formalization</span>
+        <span class="tag">Wing C: Academic Research</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2: Overview Flowchart -->
+  <div class="slide" data-slide="1">
+    <div class="slide-header">
+      <div class="slide-label">Overview</div>
+      <h2>Lab Structure</h2>
+    </div>
+    <div class="mermaid-container">
+      <pre class="mermaid">
+flowchart TB
+    subgraph CCRL["CRYPTO COMMONS RESEARCH LAB"]
+        direction TB
+        subgraph WingA["WING A: Practical Protocol Design"]
+            A1[Permissionless Saving Circles]
+            A2[Permissionless Brood Funds]
+        end
+        subgraph WingB["WING B: Trust Distribution Formalization"]
+            B1[Theoretical Framework]
+            B2[Applied Analysis]
+        end
+        subgraph WingC["WING C: Academic Research"]
+            C1[Bread Co-op Case Study]
+            C2[CCRL Website & Affiliation]
+        end
+    end
+    WingA -->|"provides use cases"| WingB
+    WingB -->|"provides formal security arguments"| WingA
+    WingC -->|"documents outputs"| WingA
+    WingC -->|"documents outputs"| WingB
+    SS[Summer School - July 2026] -.->|"visibility venue"| CCRL
+    CCG[Crypto Commons Gathering - Aug 2026] -.->|"visibility venue"| CCRL
+      </pre>
+    </div>
+  </div>
+
+  <!-- Slide 3: Timeline -->
+  <div class="slide" data-slide="2">
+    <div class="slide-header">
+      <div class="slide-label">Timeline</div>
+      <h2>Jan &ndash; Aug 2026</h2>
+    </div>
+    <div class="mermaid-container">
+      <pre class="mermaid">
+gantt
+    title CCRL Jan–Aug 2026 Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Wing A: Protocol Design
+    Scope & student proposals     :a1, 2026-01-01, 2M
+    Prototype/spec development    :a2, after a1, 2M
+    Implementation & review       :a3, after a2, 2M
+    Student-led deployment        :a4, after a3, 2M
+    section Wing B: Trust Formalization
+    Theoretical framework         :b1, 2026-01-01, 8M
+    Applied analysis              :b2, 2026-04-01, 5M
+    section Wing C: Academic
+    Fellowship decision           :milestone, c0, 2026-02-01, 0d
+    Bread Co-op research          :c1, 2026-02-01, 7M
+    CCRL website setup            :c2, 2026-02-01, 1M
+    Academic article              :c3, 2026-06-01, 3M
+    section Events
+    Proposal decision             :milestone, ss0, 2026-02-01, 0d
+    Summer school event           :milestone, ss1, 2026-07-01, 0d
+    Crypto Commons Gathering      :milestone, ccg1, 2026-08-28, 0d
+      </pre>
+    </div>
+  </div>
+
+  <!-- Slide 4: Team Structure -->
+  <div class="slide" data-slide="3">
+    <div class="slide-header">
+      <div class="slide-label">Team</div>
+      <h2>Team Structure</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card card-accent">
+        <h3>Wing A: Protocol Design</h3>
+        <table>
+          <tr><th>Member</th><th>Role</th><th>Effort</th></tr>
+          <tr><td>Ron</td><td>Lead, development</td><td>4-6 hrs/mo</td></tr>
+          <tr><td>Giuseppe</td><td>Academic advisor</td><td>2-3 hrs/mo</td></tr>
+          <tr><td>Students</td><td>Issues, improvements</td><td>TBD</td></tr>
+          <tr><td>Kin</td><td>Documentation</td><td>2 hrs/mo</td></tr>
+        </table>
+      </div>
+      <div class="card card-accent">
+        <h3>Wing B: Trust Formalization</h3>
+        <table>
+          <tr><th>Member</th><th>Role</th><th>Effort</th></tr>
+          <tr><td>Clara</td><td>Lead (funded)</td><td>Full-time</td></tr>
+          <tr><td>Federico</td><td>PhD researcher</td><td>PhD focus</td></tr>
+          <tr><td>Ron</td><td>Use case provider</td><td>1-2 hrs/mo</td></tr>
+        </table>
+      </div>
+      <div class="card card-accent">
+        <h3>Wing C: Academic</h3>
+        <table>
+          <tr><th>Member</th><th>Role</th><th>Effort</th></tr>
+          <tr><td>Kin</td><td>Lead</td><td>8-10 hrs/mo</td></tr>
+          <tr><td>Federico</td><td>Support</td><td>1-2 hrs/mo</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Wing A -->
+  <div class="slide" data-slide="4">
+    <div class="slide-header">
+      <div class="slide-label">Wing A</div>
+      <h2>Practical Protocol Design</h2>
+      <p class="subtitle">Improve and ship permissionless versions of saving circles and brood funds</p>
+    </div>
+    <div class="grid-3" style="margin-top:10px">
+      <div class="card card-accent">
+        <h3>Saving Circles (Stacks)</h3>
+        <ul>
+          <li>Current: Closed trust-based model</li>
+          <li>Target: Permissionless model</li>
+          <li>Lead: Ron</li>
+        </ul>
+        <div style="margin-top:12px"><span class="status-tag status-active">Briefed Dec 27</span></div>
+      </div>
+      <div class="card card-accent">
+        <h3>Brood Funds</h3>
+        <ul>
+          <li>Current: Asymmetric co-op power</li>
+          <li>Target: Distributed governance</li>
+          <li>Lead: Ron</li>
+        </ul>
+        <div style="margin-top:12px"><span class="status-tag status-pending">Needs scoping</span></div>
+      </div>
+      <div class="card card-accent">
+        <h3>Student Contributions</h3>
+        <ul>
+          <li>Bug fixes & improvements</li>
+          <li>Issues across existing protocols</li>
+          <li>General dev work</li>
+        </ul>
+        <div style="margin-top:12px"><span class="status-tag status-active">Briefed Dec 27</span></div>
+      </div>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step step-blue">Student Proposals</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-step step-blue">Design Review</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-step step-amber">Prototype</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-step step-amber">Implementation</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-step step-green">Internal Audit</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-step step-green">Deployment</div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Wing B -->
+  <div class="slide" data-slide="5">
+    <div class="slide-header">
+      <div class="slide-label">Wing B</div>
+      <h2>Trust Distribution Formalization</h2>
+      <p class="subtitle">Formal mathematical models for measuring decentralization, and research into making protocols permissionless</p>
+    </div>
+    <div class="grid-2" style="margin-top:10px">
+      <div>
+        <h3>Research Areas</h3>
+        <div class="card card-accent" style="margin-bottom:20px">
+          <h3 style="font-size:17px">Permissionless Saving Circles / Stacks</h3>
+          <ul>
+            <li>Transition from closed trust-based to permissionless</li>
+            <li>Formal security &amp; trust guarantees in open participation</li>
+          </ul>
+        </div>
+        <div class="card card-accent">
+          <h3 style="font-size:17px">Permissionless Brood Funds / Safety Net</h3>
+          <ul>
+            <li>Permissionless participation while maintaining safety net</li>
+            <li>Governance without co-op gatekeeping</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3>Applied Analysis Targets</h3>
+        <div class="mermaid-container" style="justify-content:flex-start">
+          <pre class="mermaid">
+flowchart TB
+    Framework[Trust Distribution Framework] --> SC[Saving Circles / Stacks]
+    Framework --> BF[Brood Funds / Safety Net]
+    Framework --> Bread[Bread Protocol]
+    SC --> Paper1["Paper"]
+    BF --> Paper2["Paper"]
+    Bread --> Paper3["Paper"]
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Wing C -->
+  <div class="slide" data-slide="6">
+    <div class="slide-header">
+      <div class="slide-label">Wing C</div>
+      <h2>Academic Research &amp; Documentation</h2>
+      <p class="subtitle">Academic legitimacy, documentation, and branding</p>
+    </div>
+    <div class="grid-2" style="margin-top:10px">
+      <div>
+        <h3>Kin's Research Flow</h3>
+        <div class="mermaid-container" style="justify-content:flex-start">
+          <pre class="mermaid">
+flowchart LR
+    I1[Interviews: Core Team] --> A[Analysis]
+    I2[Interviews: Community] --> A
+    I3[Interviews: Bread Holders] --> A
+    D[Documentation Review] --> A
+    A --> R[Report/Article]
+    R --> C[Conference Presentation]
+          </pre>
+        </div>
+      </div>
+      <div>
+        <h3>Team</h3>
+        <div class="card card-accent" style="margin-bottom:20px">
+          <table>
+            <tr><th>Member</th><th>Role</th><th>Effort</th></tr>
+            <tr><td>Kin</td><td>Lead</td><td>8-10 hrs/mo (if approved)</td></tr>
+            <tr><td>Federico</td><td>Support</td><td>1-2 hrs/mo</td></tr>
+          </table>
+        </div>
+        <h3>Deliverables</h3>
+        <div class="card card-accent">
+          <ul>
+            <li>Bread Co-op case study research</li>
+            <li>CCRL website setup</li>
+            <li>Academic article (Jun&ndash;Aug)</li>
+            <li>Conference presentation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 8: Dependencies -->
+  <div class="slide" data-slide="7">
+    <div class="slide-header">
+      <div class="slide-label">Coordination</div>
+      <h2>Dependencies &amp; Coordination</h2>
+    </div>
+    <div class="mermaid-container">
+      <pre class="mermaid">
+flowchart TB
+    A["Wing A: Protocols"] -->|"real-world test cases"| B["Wing B: Formalization"]
+    B -->|"formal security arguments"| A
+    A -->|"outputs to document"| C["Wing C: Academic"]
+    B -->|"papers with affiliation"| C
+    C -->|"legitimacy & visibility"| A
+    C -->|"legitimacy & visibility"| B
+      </pre>
+    </div>
+  </div>
+
+  <!-- Slide 9: Events -->
+  <div class="slide" data-slide="8">
+    <div class="slide-header">
+      <div class="slide-label">Events</div>
+      <h2>2026 Events</h2>
+    </div>
+    <div class="event-grid">
+      <div class="card card-accent">
+        <h3>Summer School</h3>
+        <table>
+          <tr><td>Proposal Due</td><td>Jan 20, 2026</td></tr>
+          <tr><td>Dates</td><td>July 13&ndash;17, 2026</td></tr>
+          <tr><td>Decision</td><td>Expected February</td></tr>
+          <tr><td>Confirmed Speaker</td><td>Felix</td></tr>
+          <tr><td>Potential</td><td>Ron as lecturer</td></tr>
+        </table>
+      </div>
+      <div class="card card-accent">
+        <h3>Crypto Commons Gathering</h3>
+        <table>
+          <tr><td>Dates</td><td>August 2026</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 10: Open Questions -->
+  <div class="slide" data-slide="9">
+    <div class="slide-header">
+      <div class="slide-label">Discussion</div>
+      <h2>Open Questions</h2>
+    </div>
+    <div style="max-width:800px">
+      <div class="question-item">
+        <span class="question-num">01</span>
+        <span class="question-text">Is Giuseppe available to commit students to Wing A?</span>
+      </div>
+      <div class="question-item">
+        <span class="question-num">02</span>
+        <span class="question-text">Should we set up a forum instead of Signal for async work?</span>
+      </div>
+      <div class="question-item">
+        <span class="question-num">03</span>
+        <span class="question-text">Timeline for CCRL website with publications?</span>
+      </div>
+      <div class="question-item">
+        <span class="question-num">04</span>
+        <span class="question-text">How do we handle affiliation if papers publish at different times?</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <span class="slide-counter" id="counter">1 / 10</span>
+  <div class="nav-dots" id="dots"></div>
+  <div class="nav-controls">
+    <button class="nav-btn" onclick="prev()" aria-label="Previous">&larr;</button>
+    <button class="nav-btn" onclick="next()" aria-label="Next">&rarr;</button>
+  </div>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      darkMode: true,
+      background: '#1a1a25',
+      primaryColor: '#2d5a8e',
+      primaryTextColor: '#e8e8ef',
+      primaryBorderColor: '#3a7bc8',
+      secondaryColor: '#22222f',
+      tertiaryColor: '#12121a',
+      lineColor: '#5b8fd9',
+      textColor: '#e8e8ef',
+      mainBkg: '#2d5a8e',
+      nodeBorder: '#3a7bc8',
+      clusterBkg: '#12121a',
+      clusterBorder: '#2a2a3a',
+      titleColor: '#e8e8ef',
+      edgeLabelBackground: '#1a1a25',
+      sectionBkgColor: '#1a1a25',
+      sectionBkgColor2: '#22222f',
+      altSectionBkgColor: '#12121a',
+      gridColor: '#2a2a3a',
+      todayLineColor: '#5b8fd9',
+      taskBorderColor: '#3a7bc8',
+      taskBkgColor: '#2d5a8e',
+      activeTaskBorderColor: '#5b8fd9',
+      activeTaskBkgColor: '#3a7bc8',
+      doneTaskBkgColor: '#22222f',
+      doneTaskBorderColor: '#2a2a3a',
+      critBorderColor: '#e0a050',
+      critBkgColor: '#e0a050',
+    },
+    flowchart: { curve: 'basis', padding: 20 },
+    gantt: { fontSize: 13 }
+  });
+
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const dotsEl = document.getElementById('dots');
+  const counterEl = document.getElementById('counter');
+
+  // Create dots
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsEl.appendChild(dot);
+  }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsEl.children[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    dotsEl.children[current].classList.add('active');
+    counterEl.textContent = (current + 1) + ' / ' + total;
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  });
+
+  // Touch swipe navigation
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const swipeThreshold = 50;
+
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) next();
+      else prev();
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>
